@@ -1,0 +1,35 @@
+{% extends "chome_base.html.jinja" %}
+{% block subtitle %} - Logged In {% endblock %}
+{% block main %}
+<div class="w3-cell-row">
+<div class="w3-card-4 w3-panel w3-cell w3-cell-middle" style="width:75%">
+    <header class="w3-panel w3-blue w3-center">
+        <h2>Welcome {{ user }} </h2>
+    </header>
+
+    <div class="w3-responsive">
+    <table class="w3-table w3-striped w3-center">
+        <tr class="w3-green">
+            <th class="w3-center">Sensor ID</th>
+            <th class="w3-center">Recorded Time</th>
+            <th class="w3-center">Value</th>
+        </tr>
+        {% for key, value in plantdata.items() %}
+        <tr>
+            <td class="w3-center">{{ key|e }}</td>
+            <td class="w3-center">{{ value[0]|e }}</td>
+            <td class="w3-center">{{ value[1]|e }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+    <footer class="w3-panel w3-pale-blue w3-center">
+    <form class="w3-panel w3-center" action="/logout" method="post">
+        <input class="w3-button w3-teal" type="submit" value="Logout">
+    </form>
+    </footer>
+  </div>
+</div>
+
+{% endblock %}
