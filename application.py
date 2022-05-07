@@ -3,7 +3,7 @@ import json
 import os
 from flask import Flask, request, Response, render_template, redirect, url_for, session
 import db
-from db_functions import do_login, get_plantdata
+from db_functions import do_login, get_plantdata, get_averagetemp, get_averagehumidity, get_averageyield
 import optparse
 
 application = Flask(__name__, instance_relative_config=True)
@@ -42,8 +42,11 @@ def login():
         login = False
     if login:
         plantdata = get_plantdata()
+        averagetemp = get_averagetemp()
+        averagehumidity = get_averagehumidity()
+        averageyield = get_averageyield()
         #print(courses)
-        page = render_template('main_page.html.jinja', user=uname, plantdata=plantdata)
+        page = render_template('main_page.html.jinja', user=uname, plantdata=plantdata,temp=averagetemp, hum=averagehumidity)
     else:
         error = 'Incorrect login'
         page = render_template('chome_base.html.jinja', error=error)

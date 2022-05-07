@@ -5,20 +5,25 @@
 <div class="w3-card-4 w3-panel w3-cell w3-cell-middle" style="width:75%">
     <header class="w3-panel w3-blue w3-center">
         <h2>Welcome {{ user }} </h2>
+        <h3>Average Temperature:  {{ temp }} </h3>
+        <h3>Average Humidity:  {{ hum }} </h3>
+        <h3>Average Yield:  {{ yield }} </h3>
     </header>
 
     <div class="w3-responsive">
     <table class="w3-table w3-striped w3-center">
         <tr class="w3-green">
-            <th class="w3-center">Sensor ID</th>
             <th class="w3-center">Recorded Time</th>
-            <th class="w3-center">Value</th>
+            <th class="w3-center">Yield / lbs </th>
+            <th class="w3-center">Temperature / F</th>
+            <th class="w3-center">Humidity / %</th>
         </tr>
         {% for key, value in plantdata.items() %}
         <tr>
             <td class="w3-center">{{ key|e }}</td>
             <td class="w3-center">{{ value[0]|e }}</td>
             <td class="w3-center">{{ value[1]|e }}</td>
+            <td class="w3-center">{{ value[2]|e }}</td>
         </tr>
         {% endfor %}
     </table>
